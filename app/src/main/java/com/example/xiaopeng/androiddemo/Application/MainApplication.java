@@ -27,6 +27,10 @@ public class MainApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
+        init();
+    }
+
+    private void init() {
         Logger.init("Android Demo")                 // default PRETTYLOGGER or use just init()
                 .methodCount(2)                 // default 2
                 .hideThreadInfo()               // default shown

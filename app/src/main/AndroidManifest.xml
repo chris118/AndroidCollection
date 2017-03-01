@@ -32,6 +32,19 @@
         </activity>
         <activity android:name=".Activity.ServiceActivity" />
         <activity android:name=".Activity.JNIActivity" />
+        <activity android:name=".Activity.RecycleViewActivity" />
+        <activity android:name=".Activity.PTContentProviderActivity" />
+        <activity android:name=".Activity.SharePreferenceActivity" />
+        <activity android:name=".Activity.RxJavaActivity" />
+        <activity android:name=".Activity.DaggerActivity" />
+        <activity android:name=".Activity.AnimationActivity" />
+        <activity android:name=".Activity.AnimationActivity2" />
+        <activity android:name=".Activity.EventBusActivity" />
+        <activity android:name=".Activity.GreenDaoActivity" />
+        <activity
+            android:name=".Activity.BroadcastActivity"
+            android:label="@string/title_activity_broadcast"
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <service
             android:name=".Service.LocalStartService"
@@ -53,29 +66,35 @@
             android:process=":remote">
             <intent-filter>
                 <action android:name="com.example.xiaopeng.androiddemo.Service.RemoteService" />
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </service>
+        <service
+            android:name=".Service.AIDLService"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.example.xiaopeng.androiddemo.Service.AIDLService" />
 
-        <activity android:name=".Activity.RecycleViewActivity" />
-        <activity android:name=".Activity.PTContentProviderActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </service>
+        <service
+            android:name=".Service.MessangerService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.example.xiaopeng.androiddemo.Service.MessangerService" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </service>
 
         <provider
             android:name=".ContentProvider.PTContentProvider"
             android:authorities="com.example.xiaopeng.androiddemo.PTContentProvider"
             android:enabled="true"
             android:exported="true" />
-
-        <activity android:name=".Activity.SharePreferenceActivity" />
-        <activity android:name=".Activity.RxJavaActivity" />
-        <activity android:name=".Activity.DaggerActivity" />
-        <activity android:name=".Activity.AnimationActivity" />
-        <activity android:name=".Activity.AnimationActivity2" />
-        <activity android:name=".Activity.EventBusActivity" />
-        <activity android:name=".Activity.GreenDaoActivity" />
-        <activity
-            android:name=".Activity.BroadcastActivity"
-            android:label="@string/title_activity_broadcast"
-            android:theme="@style/AppTheme.NoActionBar" />
 
         <receiver
             android:name=".Reciever.StaticReceiver"
@@ -97,7 +116,7 @@
         <receiver
             android:name=".Reciever.ReceiverC"
             android:enabled="true"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter android:priority="900">
                 <action android:name="com.example.xiaopeng.order_broadcast" />
             </intent-filter>
@@ -110,6 +129,8 @@
                 <action android:name="com.example.xiaopeng.order_broadcast" />
             </intent-filter>
         </receiver>
+
+        <activity android:name=".Activity.TimerActivity"></activity>
     </application>
 
 </manifest>

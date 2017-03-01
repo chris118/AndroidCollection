@@ -67,11 +67,6 @@ public class RemoteService extends Service {
     IMyAidlInterface.Stub mBinder = new IMyAidlInterface.Stub() {
 
         @Override
-        public void basicTypes(int anInt, long aLong, boolean aBoolean, float aFloat, double aDouble, String aString) throws RemoteException {
-
-        }
-
-        @Override
         public void doSomething(final String str) throws RemoteException {
 
             new Thread(new Runnable() {

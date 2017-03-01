@@ -29,6 +29,7 @@ import com.example.xiaopeng.androiddemo.Activity.PTContentProviderActivity;
 import com.example.xiaopeng.androiddemo.Activity.RecycleViewActivity;
 import com.example.xiaopeng.androiddemo.Activity.RxJavaActivity;
 import com.example.xiaopeng.androiddemo.Activity.ServiceActivity;
+import com.example.xiaopeng.androiddemo.Activity.TimerActivity;
 import com.example.xiaopeng.androiddemo.Adapter.MainAdapter;
 import com.example.xiaopeng.androiddemo.Bean.RepoEntity;
 import com.example.xiaopeng.androiddemo.HttpService.RetrofitManager;
@@ -83,6 +84,7 @@ public class HomeFragment extends Fragment {
         functionList.add("EventBus");
         functionList.add("GreenDAO");
         functionList.add("Broadcast");
+        functionList.add("Timer");
 
         adapter = new MainAdapter(getActivity().getApplicationContext(), functionList);
         adapter.setOnItemClickLitener(new MainAdapter.OnItemClickLitener() {
@@ -154,10 +156,14 @@ public class HomeFragment extends Fragment {
             case 12:
                 BroadcastClicked();
                 break;
+            case 13:
+                TimerClicked();
+                break;
             default:
                 break;
         }
     }
+
 
     private  void serviceClicked(){
         Intent intent = new Intent();
@@ -263,5 +269,9 @@ public class HomeFragment extends Fragment {
     }
     private void BroadcastClicked(){
         startActivity(new Intent().setClass(getActivity(), BroadcastActivity.class));
+    }
+
+    private void TimerClicked() {
+        startActivity(new Intent().setClass(getActivity(), TimerActivity.class));
     }
 }
