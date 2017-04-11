@@ -1,15 +1,15 @@
 package com.example.xiaopeng.androiddemo.Dagger;
 
 import com.example.xiaopeng.androiddemo.Activity.DaggerActivity;
-import com.example.xiaopeng.androiddemo.Activity.MainActivity;
 
 import dagger.Component;
 
 /**
- * Created by xiaopeng on 16/8/10.
+ * Created by xiaopeng on 2017/4/11.
  */
 
-@Component(modules = AModule.class)
-public interface AComponent{
+// 多Module
+@Component(modules = {ActivityModule.class, AModule.class, HouseModule.class})
+public interface ActivityComponent {
     void inject(DaggerActivity daggerActivity);
 }
