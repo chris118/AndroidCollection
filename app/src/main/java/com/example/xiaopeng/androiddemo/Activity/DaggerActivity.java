@@ -4,12 +4,20 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+import com.example.xiaopeng.androiddemo.Dagger.ActivityModule;
+import com.example.xiaopeng.androiddemo.Dagger.ConstructorInject;
+import com.example.xiaopeng.androiddemo.Dagger.DaggerDependentComponent;
+import com.example.xiaopeng.androiddemo.Dagger.DependentComponent;
+import com.example.xiaopeng.androiddemo.Dagger.DependentModel;
 import com.example.xiaopeng.androiddemo.Dagger.DaggerActivityComponent;
+import com.example.xiaopeng.androiddemo.Dagger.DependentModelOther;
+import com.example.xiaopeng.androiddemo.Dagger.DependentModule;
+import com.example.xiaopeng.androiddemo.Dagger.HouseModel;
+import com.example.xiaopeng.androiddemo.Dagger.HouseModule;
 import com.example.xiaopeng.androiddemo.Dagger.UserModel;
 import com.example.xiaopeng.androiddemo.R;
 
 
-import com.example.xiaopeng.androiddemo.Dagger.ClassA;
 import com.google.gson.Gson;
 
 import javax.inject.Inject;
@@ -19,7 +27,7 @@ public class DaggerActivity extends AppCompatActivity {
     private final String TAG = DaggerActivity.class.getSimpleName();
 
     @Inject
-    ClassA a;
+    ConstructorInject constructorInject;
 
     @Inject
     Gson gson;
@@ -27,20 +35,34 @@ public class DaggerActivity extends AppCompatActivity {
     @Inject
     UserModel userModel;
 
+    @Inject
+    HouseModel houseModel;
+
+    @Inject
+    DependentModel dependentModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dagger);
 
+        DependentComponent dependentComponent = DaggerDependentComponent
+                                                .builder()
+                                                .dependentModule(new DependentModule("hello"))
+                                                .build();
         DaggerActivityComponent.builder()
+                .dependentComponent(dependentComponent)
+                .houseModule(new HouseModule("hahah"))
+                .activityModule(new ActivityModule())
                 .build().inject(this);
 
-        a.field = "test";
-        String aStr = gson.toJson(a);
+        DependentModel model1 = dependentComponent.DependentModel();
+
+        DependentModelOther model2 = dependentComponent.DependentModelOther();
+
+
+        constructorInject.field = "test";
+        String aStr = gson.toJson(constructorInject);
         Log.d(TAG,"astr = "+aStr);
-
-
-        ////
     }
 }

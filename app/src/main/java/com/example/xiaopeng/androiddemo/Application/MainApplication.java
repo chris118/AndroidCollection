@@ -15,6 +15,8 @@ import com.orhanobut.logger.Logger;
 
 import org.greenrobot.greendao.database.Database;
 
+import javax.inject.Inject;
+
 /**
  * Created by xiaopeng on 16/6/16.
  */
@@ -22,6 +24,9 @@ public class MainApplication extends Application {
     /** A flag to show how easily you can switch from standard SQLite to the encrypted SQLCipher. */
     public static final boolean ENCRYPTED = false;
     private DaoSession daoSession;
+
+    @Inject
+    Context mAppContext;
 
     @Override
     public void onCreate() {

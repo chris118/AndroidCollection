@@ -17,7 +17,7 @@ public class AModule {
     }
 
 //    @Provides
-//    public ClassA provideClassA(){
-//        return new ClassA();
+//    public ConstructorInject provideClassA(){
+//        return new ConstructorInject();
 //    }
 }

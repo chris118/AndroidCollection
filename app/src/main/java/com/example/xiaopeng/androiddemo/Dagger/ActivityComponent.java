@@ -9,7 +9,7 @@ import dagger.Component;
  */
 
 // 多Module
-@Component(modules = {ActivityModule.class, AModule.class, HouseModule.class})
+@Component(dependencies=DependentComponent.class, modules = {ActivityModule.class, AModule.class, HouseModule.class})
 public interface ActivityComponent {
     void inject(DaggerActivity daggerActivity);
 }

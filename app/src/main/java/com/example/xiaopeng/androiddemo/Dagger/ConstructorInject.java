@@ -13,12 +13,12 @@ import javax.inject.Inject;
  * 定义一个类User 并在其构造函数用@Inject标注，表示告诉Dagger2这是我的构造函数，如果有地方要用到我，就用该构造函数对我实例化；
  */
 
-public class ClassA {
+public class ConstructorInject {
 
     final static String TAG = Class.class.getSimpleName();
 
     @Inject
-    public  ClassA(){
+    public ConstructorInject(){
         Log.d(TAG, "Class A Create!!!");
     }
 
