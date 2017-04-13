@@ -1,5 +1,7 @@
 package com.example.xiaopeng.androiddemo.Dagger;
 
+import com.example.xiaopeng.androiddemo.Dagger.scope.ActivityScope;
+
 import dagger.Module;
 import dagger.Provides;
 
@@ -15,6 +17,8 @@ public class DependentModule {
 
         mName = name;
     }
+
+
 
     @Provides
     DependentModel provideDependentModel(DependentModelOther dependentModelOther) {

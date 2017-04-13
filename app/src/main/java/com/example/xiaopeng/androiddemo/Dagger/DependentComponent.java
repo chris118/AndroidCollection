@@ -1,6 +1,8 @@
 package com.example.xiaopeng.androiddemo.Dagger;
 
 
+import com.example.xiaopeng.androiddemo.Dagger.scope.ActivityScope;
+
 import dagger.Component;
 
 /**
@@ -15,6 +17,6 @@ public interface DependentComponent {
     DependentModel DependentModel();
 
 
-    //使用Inject 构造函数注入依赖
-    DependentModelOther DependentModelOther();
+    //使用Inject 构造函数注入依赖 这里不用向外暴露类型
+    //DependentModelOther DependentModelOther();
 }

@@ -15,6 +15,8 @@ import com.example.xiaopeng.androiddemo.Dagger.DependentModule;
 import com.example.xiaopeng.androiddemo.Dagger.HouseModel;
 import com.example.xiaopeng.androiddemo.Dagger.HouseModule;
 import com.example.xiaopeng.androiddemo.Dagger.UserModel;
+import com.example.xiaopeng.androiddemo.Dagger.qualifier.ForBoy;
+import com.example.xiaopeng.androiddemo.Dagger.qualifier.ForGirl;
 import com.example.xiaopeng.androiddemo.R;
 
 
@@ -34,6 +36,18 @@ public class DaggerActivity extends AppCompatActivity {
 
     @Inject
     UserModel userModel;
+
+    @Inject
+    UserModel userModel2;
+
+    @Inject
+    @ForBoy
+    UserModel userModelBoy;
+
+    @Inject
+    @ForGirl
+    UserModel userModelGirl;
+
 
     @Inject
     HouseModel houseModel;
@@ -56,9 +70,9 @@ public class DaggerActivity extends AppCompatActivity {
                 .activityModule(new ActivityModule())
                 .build().inject(this);
 
-        DependentModel model1 = dependentComponent.DependentModel();
-
-        DependentModelOther model2 = dependentComponent.DependentModelOther();
+//        DependentModel model1 = dependentComponent.DependentModel();
+//
+//        DependentModelOther model2 = dependentComponent.DependentModelOther();
 
 
         constructorInject.field = "test";
