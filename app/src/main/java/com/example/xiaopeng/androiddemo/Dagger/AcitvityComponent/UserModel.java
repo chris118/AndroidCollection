@@ -1,6 +1,4 @@
-package com.example.xiaopeng.androiddemo.Dagger;
-
-import javax.inject.Inject;
+package com.example.xiaopeng.androiddemo.Dagger.AcitvityComponent;
 
 /**
  * Created by xiaopeng on 2017/4/11.

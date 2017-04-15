@@ -1,6 +1,4 @@
-package com.example.xiaopeng.androiddemo.Dagger;
-
-import com.google.gson.Gson;
+package com.example.xiaopeng.androiddemo.Dagger.AcitvityComponent;
 
 import dagger.Module;
 import dagger.Provides;

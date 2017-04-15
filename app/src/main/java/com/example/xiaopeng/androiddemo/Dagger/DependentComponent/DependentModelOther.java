@@ -1,4 +1,4 @@
-package com.example.xiaopeng.androiddemo.Dagger;
+package com.example.xiaopeng.androiddemo.Dagger.DependentComponent;
 
 import javax.inject.Inject;
 
@@ -13,7 +13,7 @@ public class DependentModelOther {
 //        this.name = name;
 //    }
 
-    @Inject
+   // @Inject
     public DependentModelOther(){
     }
 

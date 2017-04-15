@@ -1,6 +1,6 @@
-package com.example.xiaopeng.androiddemo.Dagger;
+package com.example.xiaopeng.androiddemo.Dagger.DependentComponent;
 
-import com.example.xiaopeng.androiddemo.Dagger.scope.ActivityScope;
+import com.example.xiaopeng.androiddemo.Dagger.scope.ActivityOtherScope;
 
 import dagger.Module;
 import dagger.Provides;
@@ -18,10 +18,15 @@ public class DependentModule {
         mName = name;
     }
 
-
-
     @Provides
+    @ActivityOtherScope
     DependentModel provideDependentModel(DependentModelOther dependentModelOther) {
         return new DependentModel(dependentModelOther, mName);
+    }
+
+    @Provides
+    //@ActivityOtherScope
+    DependentModelOther provideDependentModelOther() {
+        return new DependentModelOther();
     }
 }

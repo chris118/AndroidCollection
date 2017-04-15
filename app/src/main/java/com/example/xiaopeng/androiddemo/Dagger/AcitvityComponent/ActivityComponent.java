@@ -1,10 +1,8 @@
-package com.example.xiaopeng.androiddemo.Dagger;
+package com.example.xiaopeng.androiddemo.Dagger.AcitvityComponent;
 
 import com.example.xiaopeng.androiddemo.Activity.DaggerActivity;
+import com.example.xiaopeng.androiddemo.Dagger.DependentComponent.DependentComponent;
 import com.example.xiaopeng.androiddemo.Dagger.scope.ActivityScope;
-
-import javax.inject.Scope;
-import javax.inject.Singleton;
 
 import dagger.Component;
 

@@ -1,4 +1,4 @@
-package com.example.xiaopeng.androiddemo.Dagger;
+package com.example.xiaopeng.androiddemo.Dagger.AcitvityComponent;
 
 import com.google.gson.Gson;
 
@@ -17,7 +17,7 @@ public class AModule {
     }
 
 //    @Provides
-//    public ConstructorInject provideClassA(){
-//        return new ConstructorInject();
+//    public AClass provideClassA(){
+//        return new AClass();
 //    }
 }

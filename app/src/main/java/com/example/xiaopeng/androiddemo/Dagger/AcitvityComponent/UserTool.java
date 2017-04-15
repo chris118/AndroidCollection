@@ -1,4 +1,4 @@
-package com.example.xiaopeng.androiddemo.Dagger;
+package com.example.xiaopeng.androiddemo.Dagger.AcitvityComponent;
 
 /**
  * Created by xiaopeng on 2017/4/11.

@@ -1,4 +1,4 @@
-package com.example.xiaopeng.androiddemo.Dagger;
+package com.example.xiaopeng.androiddemo.Dagger.AcitvityComponent;
 
 import com.example.xiaopeng.androiddemo.Dagger.qualifier.ForBoy;
 import com.example.xiaopeng.androiddemo.Dagger.qualifier.ForGirl;
