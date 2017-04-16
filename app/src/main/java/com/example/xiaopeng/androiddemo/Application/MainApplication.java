@@ -4,6 +4,9 @@ import android.app.Application;
 import android.content.Context;
 
 import com.example.xiaopeng.androiddemo.BuildConfig;
+import com.example.xiaopeng.androiddemo.Dagger.SingletonComponent.DaggerSingletonComponent;
+import com.example.xiaopeng.androiddemo.Dagger.SingletonComponent.SgModule;
+import com.example.xiaopeng.androiddemo.Dagger.SingletonComponent.SingletonComponent;
 import com.example.xiaopeng.androiddemo.HttpService.RetrofitManager;
 import com.example.xiaopeng.androiddemo.LogUtil.LogUtil;
 import com.example.xiaopeng.androiddemo.Utils.AppContextUtil;
@@ -25,8 +28,7 @@ public class MainApplication extends Application {
     public static final boolean ENCRYPTED = false;
     private DaoSession daoSession;
 
-    @Inject
-    Context mAppContext;
+    SingletonComponent mApplicationComponent;
 
     @Override
     public void onCreate() {
@@ -56,11 +58,17 @@ public class MainApplication extends Application {
         DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(this, ENCRYPTED ? "notes-db-encrypted" : "notes-db");
         Database db = ENCRYPTED ? helper.getEncryptedWritableDb("super-secret") : helper.getWritableDb();
         daoSession = new DaoMaster(db).newSession();
+
+        mApplicationComponent = DaggerSingletonComponent.builder().sgModule(new SgModule(this)).build();
     }
 
     // 获取ApplicationContext
     public static Context getContext() {
         return AppContextUtil.getInstance();
+    }
+
+    public  SingletonComponent getApplicationComponent(){
+        return mApplicationComponent;
     }
 
     public DaoSession getDaoSession() {

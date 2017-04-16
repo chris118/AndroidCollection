@@ -130,7 +130,8 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".Activity.TimerActivity"></activity>
+        <activity android:name=".Activity.TimerActivity" />
+        <activity android:name=".Activity.DaggerTestActivity"></activity>
     </application>
 
 </manifest>

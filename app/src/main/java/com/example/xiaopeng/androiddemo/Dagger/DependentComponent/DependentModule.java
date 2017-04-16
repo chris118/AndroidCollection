@@ -19,7 +19,7 @@ public class DependentModule {
     }
 
     @Provides
-    @ActivityOtherScope
+    //@ActivityOtherScope
     DependentModel provideDependentModel(DependentModelOther dependentModelOther) {
         return new DependentModel(dependentModelOther, mName);
     }

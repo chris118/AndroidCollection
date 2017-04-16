@@ -10,7 +10,7 @@ import dagger.Component;
  */
 
 
-@ActivityOtherScope // **** AppComponent 依赖了 DependentComponent, 他们不能有相同的 scope
+//@ActivityOtherScope // **** AppComponent 依赖了 DependentComponent, 他们不能有相同的 scope
 @Component(modules = DependentModule.class)
 public interface DependentComponent {
 

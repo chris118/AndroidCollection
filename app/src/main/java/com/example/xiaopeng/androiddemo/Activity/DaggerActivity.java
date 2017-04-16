@@ -1,11 +1,13 @@
 package com.example.xiaopeng.androiddemo.Activity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.xiaopeng.androiddemo.Application.MainApplication;
 import com.example.xiaopeng.androiddemo.Base.BaseActivity;
 import com.example.xiaopeng.androiddemo.Dagger.AcitvityComponent.AClass;
 import com.example.xiaopeng.androiddemo.Dagger.AcitvityComponent.DaggerActivityComponent;
@@ -17,6 +19,7 @@ import com.example.xiaopeng.androiddemo.Dagger.DependentComponent.DependentModul
 import com.example.xiaopeng.androiddemo.Dagger.AcitvityComponent.HouseModel;
 import com.example.xiaopeng.androiddemo.Dagger.AcitvityComponent.HouseModule;
 import com.example.xiaopeng.androiddemo.Dagger.AcitvityComponent.UserModel;
+import com.example.xiaopeng.androiddemo.Dagger.SingletonComponent.SingletonComponent;
 import com.example.xiaopeng.androiddemo.Dagger.qualifier.ForBoy;
 import com.example.xiaopeng.androiddemo.Dagger.qualifier.ForGirl;
 import com.example.xiaopeng.androiddemo.R;
@@ -75,6 +78,12 @@ public class DaggerActivity extends BaseActivity {
     DependentModel dependentModel_2;
     DependentModelOther dependentModel_Other;
 
+    @Inject
+    Context mApplictionContext_1;
+
+    @Inject
+    Context mApplictionContext_2;
+
     @Override
     public int getContentViewId() {
         return R.layout.activity_dagger;
@@ -89,7 +98,10 @@ public class DaggerActivity extends BaseActivity {
                 .builder()
                 .dependentModule(new DependentModule("hello")) // 使用dependentModule构造函数传入需要的参数
                 .build();
+
+        SingletonComponent singletonComponent = ((MainApplication)getApplication()).getApplicationComponent();
         DaggerActivityComponent.builder()
+                .singletonComponent(singletonComponent)
                 .dependentComponent(dependentComponent) // 注入依赖component
                 .houseModule(new HouseModule("hahaha"))  // 使用HouseModule构造函数传入需要的参数
                 //.activityModule(new ActivityModule()) // 如果使用默认构函数，这句可以省略
@@ -100,18 +112,21 @@ public class DaggerActivity extends BaseActivity {
         dependentModel_2 = dependentComponent.DependentModel();
         dependentModel_Other = dependentComponent.DependentModelOther();
 
-
-        AClass_1.field = "test";
-        String aStr = gson.toJson(AClass_1);
-        Log.d(TAG,"astr = "+aStr);
-
         Button btn = (Button)this.findViewById(R.id.daggerBtn);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.d(TAG, dependentModel.getName());
+                Intent intent = new Intent();
+                intent.setClass(DaggerActivity.this, DaggerTestActivity.class);
+                startActivity(intent);
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 
     @OnClick(R.id.daggerBtn)
