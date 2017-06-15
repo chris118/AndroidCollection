@@ -17,19 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.xiaopeng.androiddemo.Activity.AnimationActivity;
-import com.example.xiaopeng.androiddemo.Activity.AnimationActivity2;
-import com.example.xiaopeng.androiddemo.Activity.BroadcastActivity;
-import com.example.xiaopeng.androiddemo.Activity.DaggerActivity;
-import com.example.xiaopeng.androiddemo.Activity.EventBusActivity;
-import com.example.xiaopeng.androiddemo.Activity.GreenDaoActivity;
-import com.example.xiaopeng.androiddemo.Activity.JNIActivity;
-import com.example.xiaopeng.androiddemo.Activity.MainActivity;
-import com.example.xiaopeng.androiddemo.Activity.PTContentProviderActivity;
-import com.example.xiaopeng.androiddemo.Activity.RecycleViewActivity;
-import com.example.xiaopeng.androiddemo.Activity.RxJavaActivity;
-import com.example.xiaopeng.androiddemo.Activity.ServiceActivity;
-import com.example.xiaopeng.androiddemo.Activity.TimerActivity;
+import com.example.xiaopeng.androiddemo.Activity.*;
 import com.example.xiaopeng.androiddemo.Adapter.MainAdapter;
 import com.example.xiaopeng.androiddemo.Bean.RepoEntity;
 import com.example.xiaopeng.androiddemo.HttpService.RetrofitManager;
@@ -85,6 +73,7 @@ public class HomeFragment extends Fragment {
         functionList.add("GreenDAO");
         functionList.add("Broadcast");
         functionList.add("Timer");
+        functionList.add("lazyfragment");
 
         adapter = new MainAdapter(getActivity().getApplicationContext(), functionList);
         adapter.setOnItemClickLitener(new MainAdapter.OnItemClickLitener() {
@@ -158,6 +147,9 @@ public class HomeFragment extends Fragment {
                 break;
             case 13:
                 TimerClicked();
+                break;
+            case 14:
+                LazyFragmentClicked();
                 break;
             default:
                 break;
@@ -267,11 +259,17 @@ public class HomeFragment extends Fragment {
     private void GreenDAOClicked(){
         startActivity(new Intent().setClass(getActivity(), GreenDaoActivity.class));
     }
+
     private void BroadcastClicked(){
         startActivity(new Intent().setClass(getActivity(), BroadcastActivity.class));
     }
 
     private void TimerClicked() {
         startActivity(new Intent().setClass(getActivity(), TimerActivity.class));
+    }
+
+    private void LazyFragmentClicked(){
+        startActivity(new Intent().setClass(getActivity(), LazyFragmentActivity.class));
+
     }
 }
