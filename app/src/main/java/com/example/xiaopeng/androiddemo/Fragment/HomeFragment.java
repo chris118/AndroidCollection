@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.example.xiaopeng.androiddemo.Activity.*;
 import com.example.xiaopeng.androiddemo.Adapter.MainAdapter;
 import com.example.xiaopeng.androiddemo.Bean.RepoEntity;
+import com.example.xiaopeng.androiddemo.Dialog.LoadingDialog;
 import com.example.xiaopeng.androiddemo.HttpService.RetrofitManager;
 import com.example.xiaopeng.androiddemo.R;
 import com.example.xiaopeng.androiddemo.Views.DividerItemDecoration;
@@ -37,6 +38,7 @@ public class HomeFragment extends Fragment {
     private final String TAG = HomeFragment.class.getSimpleName();
 
     private ProgressDialog dialog;
+    private LoadingDialog ld_dialog;
     private MainAdapter adapter;
     private List<RepoEntity> repos;
     private GPushClient gPushClient;
@@ -52,6 +54,9 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        ld_dialog = new LoadingDialog(getActivity());
+        ld_dialog.setTitle("刷新中");
 
         recycleView = (RecyclerView) getActivity().findViewById(R.id.id_recyclerview);
         initRecycleView();
@@ -188,8 +193,8 @@ public class HomeFragment extends Fragment {
     }
 
     private  void RecycleViewClicked(){
-        dialog = ProgressDialog.show(getActivity(), null, "请稍候...", true, false);
-
+//        dialog = ProgressDialog.show(getActivity(), null, "请稍候...", true, false);
+        ld_dialog.show();
         Call<List<RepoEntity>> call = RetrofitManager.getInstance().getGitService().listRepos("square");
         call.enqueue(new Callback<List<RepoEntity>>() {
             @Override
@@ -203,16 +208,19 @@ public class HomeFragment extends Fragment {
                 bundle.putParcelableArrayList("repos", (ArrayList<? extends Parcelable>) repos);
                 intent.putExtras(bundle);
 
-                if (dialog.isShowing())
-                    dialog.dismiss();
+//                if (dialog.isShowing())
+//                    dialog.dismiss();
+                ld_dialog.dismiss();
                 startActivity(intent);
             }
 
             @Override
             public void onFailure(Call<List<RepoEntity>> call, Throwable t) {
                 Log.d(TAG, t.getMessage());
-                if (dialog.isShowing())
-                    dialog.dismiss();
+//                if (dialog.isShowing())
+//                    dialog.dismiss();
+
+                ld_dialog.dismiss();
             }
         });
 
